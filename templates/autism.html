@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Autism Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/autism.css') }}">
+</head>
+
+<body>
+
+<div class="gradient-bg">
+
+    <!-- Navigation Bar -->
+    <nav class="top-nav">
+        <a href="{{ url_for('index') }}" class="nav-item">🏠 Home</a>
+        <a href="#upload-section" class="nav-item">🔍 Prediction</a>
+        <a href="#about-section" class="nav-item">ℹ️ About</a>
+    </nav>
+
+    <!-- Main White Card -->
+    <div class="main-card">
+
+        <h1 class="main-title">🧩 Upload Image for Autism Prediction</h1>
+
+        <div id="about-section" class="about-box">
+            <h3>ℹ️ About Autism Detection</h3>
+            <p>
+                Autism Spectrum Disorder (ASD) is a developmental condition that affects communication, social interaction, and behavior. 
+           Symptoms vary widely, and early screening helps enable timely support, therapy, and learning development.
+            </p>
+        </div>
+
+        <div id="upload-section" class="upload-section">
+
+            <form id="autism-form" 
+                  action="{{ url_for('autism_result') }}" 
+                  method="POST" 
+                  enctype="multipart/form-data">
+
+                <label for="image-upload" class="upload-box">
+                    <div class="upload-inner">
+                        <div class="upload-icon">⬆️</div>
+                        <p>Click or drag an image to upload</p>
+                        <span class="note">Supported formats: JPG, PNG, JPEG</span>
+                    </div>
+                    <input type="file" id="image-upload" name="image" accept="image/*" required>
+                </label>
+
+                <button type="submit" class="predict-btn">Predict</button>
+            </form>
+
+            <p id="file-feedback"></p>
+        </div>
+
+    </div>
+
+</div>
+<script src="{{ url_for('static', filename='js/autism.js') }}">
+document.getElementById("image-upload").addEventListener("change", function () {
+    let fileName = this.files[0]?.name || "";
+    document.getElementById("file-feedback").textContent = fileName ? "📌 Selected: " + fileName : "";
+});
+</script>
+</body>
+</html>

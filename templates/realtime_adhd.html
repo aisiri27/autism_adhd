@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Real-Time ADHD Screening</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f0f4f8;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+    }
+
+    #page {
+      margin-top: 20px;
+      text-align: center;
+      width: 800px;
+    }
+
+    header {
+      margin-bottom: 20px;
+    }
+
+    #webcam-section {
+      position: relative;
+      display: inline-block;
+      margin-bottom: 20px;
+    }
+
+    video, canvas {
+      border: 3px solid #007bff;
+      border-radius: 10px;
+      width: 640px;
+      height: 480px;
+      object-fit: cover;
+      background-color: black;
+    }
+
+    canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+    }
+
+    #controls {
+      margin-bottom: 20px;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      margin: 0 10px;
+      border-radius: 5px;
+      border: none;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    #startBtn {
+      background-color: #28a745;
+      color: white;
+    }
+
+    #startBtn:hover {
+      background-color: #218838;
+    }
+
+    #stopBtn {
+      background-color: #dc3545;
+      color: white;
+    }
+
+    #stopBtn:hover {
+      background-color: #c82333;
+    }
+
+    #metrics {
+  background-color: #e0f7fa;  /* light cyan */
+  border: 2px solid #00bcd4;  /* matching border color */
+  color: black;               /* text color black */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 15px rgba(0,0,0,0.2);
+  text-align: left;
+  min-height: 120px;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+#metrics.active {
+  background-color: #c8e6c9;  /* light green when screening active */
+  border-color: #28a745;
+  color: black;               /* ensure text stays black when active */
+}
+
+    #metrics h3 {
+      margin-top: 0;
+      text-align: center;
+    }
+
+    #metrics p {
+      font-size: 16px;
+      margin: 5px 0;
+    }
+
+    footer {
+      margin-top: 20px;
+      font-size: 14px;
+      color: #555;
+    }
+
+    .popup {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: rgba(0,0,0,0.8);
+      color: white;
+      padding: 10px 20px;
+      border-radius: 8px;
+      z-index: 1000;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+  <div id="page">
+    <header>
+      <h1>Real-Time ADHD Screening</h1>
+      <p>Ensure your webcam is on and allow access. Click "Start Screening" to begin.</p>
+    </header>
+
+    <section id="webcam-section">
+      <video id="webcam" autoplay muted playsinline></video>
+      <canvas id="overlay"></canvas>
+    </section>
+
+    <section id="controls">
+      <button id="startBtn">Start Screening</button>
+      <button id="stopBtn" disabled>Stop Screening</button>
+      <button class="btn primary" onclick="window.location.href='/index'">Home</button>
+    </section>
+
+    <section id="metrics">
+      <h3>Real-Time Metrics</h3>
+      <p>Attention Stability Score: <span id="attentionScore">--</span>%</p>
+      <p>Hyperactivity Index: <span id="hyperactivity">--</span></p>
+      <p>Blink Pattern: <span id="blinkPattern">--</span></p>
+      <p>Real-Time ADHD Likelihood: <span id="adhdLikelihood">--</span>%</p>
+    </section>
+
+    <footer>
+      <strong>Disclaimer:</strong> This is a real-time screening prototype only — not a clinical diagnosis.
+    </footer>
+  </div>
+
+  <!-- MEDIA PIPE SCRIPTS -->
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh/face_mesh.js"></script>
+
+  <!-- Custom JS -->
+  <script src="{{ url_for('static', filename='js/realtime_adhd.js') }}"></script>
+</body>
+</html>

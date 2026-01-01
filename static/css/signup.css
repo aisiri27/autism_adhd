@@ -1,0 +1,58 @@
+/* signup.css */
+
+body {
+    margin: 0;
+    font-family: "Inter", sans-serif;
+    background: #ffe7d3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background: #ffffff;
+    padding: 32px;
+    border-radius: 12px;
+    width: 340px;
+    box-shadow: 0 6px 25px rgba(0,0,0,0.08);
+    text-align: center;
+}
+
+h2 {
+    margin-bottom: 20px;
+    font-weight: 700;
+    color: #111827;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 14px;
+    border-radius: 8px;
+    border: 1px solid #d1d5db;
+    font-size: 15px;
+}
+
+.btn {
+    width: 100%;
+    padding: 12px;
+    background: #000;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.small {
+    margin-top: 12px;
+    font-size: 14px;
+}
+
+.small a {
+    color: #000;
+    font-weight: 600;
+    text-decoration: none;
+}

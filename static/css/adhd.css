@@ -1,0 +1,187 @@
+/* Soft Pastel Theme for ADHD questionnaire */
+:root{
+  --bg-1: #f6fbff;
+  --card: #ffffff;
+  --pastel-1: #cfe8e2; /* mint */
+  --pastel-2: #e6d8f7; /* lavender */
+  --accent: #7aa7a1;   /* muted teal */
+  --muted: #6b6b6b;
+  --radius: 12px;
+  --shadow: 0 10px 30px rgba(35,35,35,0.06);
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background: linear-gradient(135deg, #fbfdff 0%, #f6fbff 40%, #f3fff9 100%);
+  color:#143d3b;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  padding:28px;
+}
+
+.page-wrap{
+  max-width:920px;
+  margin: 12px auto;
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+  align-items:center;
+  padding: 0 16px;
+}
+
+/* Header */
+.top-card{
+  width:100%;
+  background: linear-gradient(90deg,var(--pastel-1), var(--pastel-2));
+  border-radius: var(--radius);
+  padding:18px 22px;
+  box-shadow: var(--shadow);
+  text-align:center;
+}
+
+.top-card h1{
+  margin:0;
+  font-size:22px;
+  color:#0f2d2b;
+}
+
+.top-card .subtitle{
+  margin:6px 0 0;
+  color:var(--muted);
+  font-size:13px;
+}
+
+/* Main card */
+.card{
+  width:100%;
+  background:var(--card);
+  border-radius: var(--radius);
+  padding:26px;
+  box-shadow: var(--shadow);
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+  align-items:stretch;
+}
+
+/* Progress */
+.progress-wrap{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.progress-bar{
+  flex:1;
+  background: #f1f6f5;
+  height:10px;
+  border-radius:999px;
+  overflow:hidden;
+  border:1px solid rgba(122,167,161,0.08);
+}
+
+.progress-fill{
+  height:100%;
+  background: linear-gradient(90deg,var(--accent), #91b9b3);
+  width:0%;
+  transition:width 260ms ease;
+}
+
+.progress-text{
+  min-width:64px;
+  text-align:right;
+  color:var(--muted);
+  font-weight:600;
+  font-size:13px;
+}
+
+/* Question area */
+.question-area{
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+  min-height:160px;
+  align-items:flex-start;
+}
+
+.question-card{
+  width:100%;
+}
+
+.question-card p{
+  margin:0 0 8px;
+  font-size:18px;
+  color:#0b2b29;
+  font-weight:600;
+}
+
+/* Options look like pills, no numeric label shown */
+.options{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+.option{
+  border-radius:999px;
+  padding:10px 14px;
+  background: #f4fbfa;
+  border:1px solid rgba(122,167,161,0.12);
+  cursor:pointer;
+  user-select:none;
+  font-size:15px;
+  color:#134b49;
+  transition: transform 120ms ease, box-shadow 120ms;
+}
+
+.option input{ display:none; } /* hide native radios */
+
+.option:hover{ transform:translateY(-3px); box-shadow:0 6px 18px rgba(15,45,43,0.06); }
+
+.option.selected{
+  background: linear-gradient(90deg,var(--accent), #9ec7c1);
+  color:#fff;
+  box-shadow:0 12px 30px rgba(122,167,161,0.14);
+}
+
+/* Navigation buttons */
+.nav-buttons{
+  display:flex;
+  gap:12px;
+  justify-content:flex-end;
+}
+
+.btn{
+  padding:11px 18px;
+  border-radius:10px;
+  border:none;
+  font-weight:600;
+  cursor:pointer;
+}
+
+.btn.ghost{
+  background:transparent;
+  color:var(--accent);
+  border:1px solid rgba(122,167,161,0.12);
+}
+
+.btn.primary{
+  background: linear-gradient(90deg,var(--accent), #8fbfb6);
+  color:white;
+}
+
+/* Footer note */
+.footer-note{
+  text-align:center;
+  color:var(--muted);
+  font-size:13px;
+}
+
+/* Responsive */
+@media (max-width:640px){
+  .card{padding:18px}
+  .question-card p{font-size:16px}
+  .option{padding:10px 12px;font-size:14px}
+}

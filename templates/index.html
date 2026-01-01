@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>ADHD / Autism Screening Prototype</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+  <div id="page">
+    <header>
+      <h1>ADHD Detection / Autism Detection</h1>
+      <p>An innovative approach to early detection and understanding through advanced analysis</p>
+    </header>
+
+    <!-- main prediction buttons -->
+    <section id="pred-buttons">
+      <button onclick="location.href='/adhd'">ADHD Prediction</button>
+      <button onclick="location.href='/autism'">Autism Prediction</button>
+      <br>
+      <button onclick="location.href='/realtime_adhd'">Real-time ADHD Prediction</button>
+      <button onclick="location.href='/realtime_autism'">Real-time Autism Prediction</button>
+    </section>
+
+    <!-- consent -->
+    <section id="consent">
+      <label>
+        <input type="checkbox" id="consentCheckbox">
+        I consent to local webcam processing and accept the privacy policy.
+      </label>
+    </section>
+
+    <!-- why screening -->
+    <section id="why-screening">
+      <h3>Why Early Screening Matters</h3>
+      <p>
+        Early identification of ADHD and Autism can significantly improve outcomes for children.
+        With timely support, children can receive specialized learning plans, behavior guidance,
+        and skill-building therapies that enhance their development.
+      </p>
+      <p>
+        Early screening helps parents understand their child's needs better and enables healthcare
+        professionals to provide targeted interventions during crucial stages of growth.
+      </p>
+    </section>
+
+    <!-- Disclaimer -->
+    <footer id="disclaimer">
+      <strong>Disclaimer:</strong> This tool is a <em>screening prototype only</em> — not a clinical diagnosis.
+    </footer>
+  </div>
+
+  <!-- ===== Chatbot ===== -->
+  <div id="chatbot-container">
+    <div id="chatbot-icon">💬</div>
+
+    <div id="chatbot-window">
+      <div id="chatbot-header">NeuroScreen Assistant</div>
+      <div id="chatbot-messages"></div>
+
+      <div id="chatbot-input-area">
+        <input type="text" id="chatbot-input" placeholder="Ask about ADHD, Autism..." />
+        <button id="chatbot-send">Send</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= JAVASCRIPT ================= -->
+  <script>
+    /* ---------- Consent Handling ---------- */
+    const consentCheckbox = document.getElementById("consentCheckbox");
+    const predictionButtons = document.querySelectorAll("#pred-buttons button");
+
+    predictionButtons.forEach(btn => btn.disabled = true);
+
+    consentCheckbox.addEventListener("change", () => {
+      predictionButtons.forEach(btn => btn.disabled = !consentCheckbox.checked);
+    });
+
+    /* ---------- Chatbot Toggle ---------- */
+    const chatbotIcon = document.getElementById("chatbot-icon");
+    const chatbotWindow = document.getElementById("chatbot-window");
+    const chatbotSend = document.getElementById("chatbot-send");
+    const chatbotInput = document.getElementById("chatbot-input");
+    const chatbotMessages = document.getElementById("chatbot-messages");
+
+    let welcomeShown = false;
+
+    chatbotIcon.addEventListener("click", () => {
+      chatbotWindow.style.display =
+        chatbotWindow.style.display === "flex" ? "none" : "flex";
+      chatbotWindow.style.flexDirection = "column";
+
+      if (!welcomeShown) {
+        addMessage(
+          "Hello 👋 I’m the NeuroScreen Assistant. You can ask me about ADHD, Autism, symptoms, screening, or next steps.",
+          "bot"
+        );
+        welcomeShown = true;
+      }
+    });
+
+    /* ---------- Chatbot Helpers ---------- */
+    function addMessage(text, sender) {
+      const msg = document.createElement("div");
+      msg.className = sender;
+      msg.textContent = text;
+      chatbotMessages.appendChild(msg);
+      chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+    }
+
+    /* ---------- Predefined Smart Responses ---------- */
+    const predefinedResponses = [
+      { k: ["what is autism"], r: "Autism Spectrum Disorder (ASD) is a neurodevelopmental condition affecting communication, social interaction, and behavior." },
+      { k: ["symptoms of autism"], r: "Autism symptoms may include social communication challenges, repetitive behaviors, and sensory sensitivity." },
+      { k: ["what is adhd"], r: "ADHD is a neurodevelopmental condition characterized by inattention, hyperactivity, and impulsivity." },
+      { k: ["symptoms of adhd"], r: "Common ADHD symptoms include difficulty focusing, impulsive behavior, and restlessness." },
+      { k: ["adhd vs autism"], r: "ADHD mainly affects attention and impulse control, while autism affects social communication and behavior." },
+      { k: ["is autism curable"], r: "Autism is not curable, but early support and therapy can greatly improve quality of life." },
+      { k: ["screening vs diagnosis"], r: "Screening identifies possible signs, while diagnosis is done by qualified medical professionals." },
+      { k: ["early signs"], r: "Early signs may include delayed speech, limited eye contact, or difficulty with social interaction." },
+      { k: ["autism in adults"], r: "Adults with autism may experience sensory sensitivity, routine preference, and social challenges." },
+      { k: ["is this medical advice"], r: "No. This is a screening prototype only. Please consult a healthcare professional for diagnosis." },
+      { k: ["what next", "next steps"], r: "If concerns persist, consulting a psychologist or psychiatrist is recommended." },
+      { k: ["ai detect autism"], r: "AI can assist in screening but cannot replace clinical diagnosis." },
+      { k: ["when consult doctor"], r: "If symptoms affect daily functioning, professional consultation is advised." },
+      { k: ["is adhd serious"], r: "ADHD can impact daily life, but proper management helps individuals thrive." },
+      { k: ["causes of autism"], r: "Autism is believed to arise from genetic and environmental factors." }
+    ];
+
+    function getPredefinedReply(message) {
+      const msg = message.toLowerCase();
+      for (let item of predefinedResponses) {
+        if (item.k.some(key => msg.includes(key))) {
+          return item.r;
+        }
+      }
+      return null;
+    }
+
+    /* ---------- Chatbot Logic ---------- */
+    chatbotSend.addEventListener("click", async () => {
+      const text = chatbotInput.value.trim();
+      if (!text) return;
+
+      addMessage(text, "user");
+      chatbotInput.value = "";
+
+      // 1️⃣ Local smart response
+      const localReply = getPredefinedReply(text);
+      if (localReply) {
+        addMessage(localReply, "bot");
+        return;
+      }
+
+      // 2️⃣ Backend AI fallback
+      try {
+        const response = await fetch("/chat", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ message: text })
+        });
+
+        const data = await response.json();
+        addMessage(data.reply || "I can help with ADHD or Autism related questions.", "bot");
+
+      } catch (error) {
+        // 3️⃣ Graceful failure (NO panic text)
+        addMessage(
+          "I may not have exact information on that. Try asking about ADHD, Autism, symptoms, or screening.",
+          "bot"
+        );
+      }
+    });
+
+    chatbotInput.addEventListener("keypress", (e) => {
+      if (e.key === "Enter") chatbotSend.click();
+    });
+  </script>
+
+</body>
+
+</html>

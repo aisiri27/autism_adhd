@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>FAQ | NeuroScreen</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: "Segoe UI", system-ui, sans-serif;
+            background: #f7f9fc;
+            color: #1f2937;
+        }
+
+        /* NAV */
+        .nav {
+            background: #ffffff;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .nav-inner {
+            max-width: 1100px;
+            margin: auto;
+            padding: 14px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-circle {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: #2563eb;
+            color: #fff;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .brand-title {
+            font-weight: 600;
+            display: block;
+        }
+
+        .brand-sub {
+            font-size: 12px;
+            color: #6b7280;
+        }
+
+        .nav-links a {
+            margin-left: 18px;
+            text-decoration: none;
+            color: #374151;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: #2563eb;
+        }
+
+        /* PAGE */
+        .page {
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 40px;
+            background: #ffffff;
+            border-radius: 14px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+        }
+
+        .page h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .page p {
+            color: #4b5563;
+            margin-bottom: 30px;
+        }
+
+        /* FAQ */
+        .faq-item {
+            border: 1px solid #e5e7eb;
+            border-radius: 10px;
+            margin-bottom: 16px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            background: #f9fafb;
+            padding: 18px 20px;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-question:hover {
+            background: #eff6ff;
+        }
+
+        .faq-answer {
+            display: none;
+            padding: 18px 20px;
+            line-height: 1.6;
+            color: #374151;
+            background: #ffffff;
+        }
+
+        .icon {
+            font-size: 18px;
+            transition: transform 0.2s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        .faq-item.active .icon {
+            transform: rotate(45deg);
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="nav">
+        <div class="nav-inner">
+            <div class="brand">
+                <div class="logo-circle">NS</div>
+                <div>
+                    <span class="brand-title">NeuroScreen</span>
+                    <span class="brand-sub">Early Screening • Support</span>
+                </div>
+            </div>
+
+            <div class="nav-links">
+                <a href="/">Home</a>
+                <a href="/about">About</a>
+                <a href="/resources">Resources</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="page">
+        <h1>Frequently Asked Questions</h1>
+        <p>
+            Find answers to common questions about NeuroScreen,
+            early screening, and data privacy.
+        </p>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                Is NeuroScreen a diagnostic tool?
+                <span class="icon">+</span>
+            </div>
+            <div class="faq-answer">
+                No. NeuroScreen is a screening prototype only.
+                It does not provide medical diagnosis and should
+                not replace evaluation by a qualified professional.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                How does the screening process work?
+                <span class="icon">+</span>
+            </div>
+            <div class="faq-answer">
+                The system uses webcam-based visual analysis to
+                extract facial expressions, emotional indicators,
+                and attention-related features using machine learning models.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                Is the screening invasive?
+                <span class="icon">+</span>
+            </div>
+            <div class="faq-answer">
+                No. The screening is completely non-invasive and
+                does not require physical contact or wearable devices.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                Who can use NeuroScreen?
+                <span class="icon">+</span>
+            </div>
+            <div class="faq-answer">
+                NeuroScreen is intended for academic, research,
+                and awareness purposes. It may be used by students,
+                researchers, and families for preliminary understanding.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                Is user data stored or shared?
+                <span class="icon">+</span>
+            </div>
+            <div class="faq-answer">
+                The prototype is designed with privacy in mind.
+                Data is used only during the session and is not
+                intended for long-term storage or third-party sharing.
+            </div>
+        </div>
+
+    </section>
+
+    <script>
+        const faqs = document.querySelectorAll(".faq-question");
+
+        faqs.forEach(q => {
+            q.addEventListener("click", () => {
+                q.parentElement.classList.toggle("active");
+            });
+        });
+    </script>
+
+</body>
+
+</html>

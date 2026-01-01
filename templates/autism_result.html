@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Autism Prediction Result</title>
+
+    <!-- INTERNAL CSS (since no external CSS exists) -->
+    <style>
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom right, #6a11cb, #2575fc);
+        }
+
+        .result-container {
+            width: 60%;
+            margin: 50px auto;
+            background: #fff;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0px 4px 20px rgba(0,0,0,0.2);
+            animation: fadeIn 0.8s ease-in-out;
+        }
+
+        h2, h3 {
+            text-align: center;
+            color: #333;
+        }
+
+        .result-image-box {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .result-image {
+            width: 250px;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 10px;
+            border: 4px solid #2575fc;
+        }
+
+        .prediction-info,
+        .emotion-info,
+        .confidence-info,
+        .reasoning-info {
+            background: #f5f7ff;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 10px;
+            border-left: 5px solid #6a11cb;
+        }
+
+        p {
+            font-size: 16px;
+            color: #444;
+        }
+
+        strong {
+            color: #000;
+        }
+
+        .back-btn {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .back-btn a {
+            display: inline-block;
+            background: #2575fc;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+
+        .back-btn a:hover {
+            background: #6a11cb;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="gradient-bg">
+
+    <div class="result-container">
+
+        <!-- Image -->
+        <div class="result-image-box">
+            <img class="result-image" src="{{ url_for('static', filename='uploads/' + image_filename) }}" alt="Uploaded Image">
+        </div>
+
+        <!-- Combined Result -->
+        <div class="single-box">
+
+            <p><strong>Status:</strong> {{ prediction }}</p>
+
+            {% if emotion %}
+                <p><strong>Emotion:</strong> {{ emotion }}</p>
+            {% else %}
+                <p><strong>Emotion:</strong> Not Available</p>
+            {% endif %}
+
+            <p><strong>Confidence:</strong> {{ combined_confidence }}%</p>
+
+        </div>
+
+        <!-- Reasoning -->
+        <div class="single-box">
+            <h3>Reasoning</h3>
+            <p>{{ reasoning }}</p>
+        </div>
+
+        <!-- Back -->
+        <div class="back-btn">
+            <a href="{{ url_for('autism') }}">Back to Upload</a>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Early Screening — Autism & ADHD</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/landing.css') }}">
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-inner">
+      <div class="brand">
+        <div class="logo-circle">NS</div>
+        <div class="brand-text">
+          <span class="brand-title">NeuroScreen</span>
+          <span class="brand-sub">Early Screening • Support</span>
+        </div>
+      </div>
+
+      <div class="nav-links">
+        <a href="/about">About</a>
+        <a href="/resources">Resources</a>
+        <a href="/faq">FAQ</a>
+        <a href="/signin" class="btn-outline">Sign In</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="hero-left">
+        <h1>Empowering Early <span class="accent">Autism</span> &amp; <span class="accent">ADHD</span> Screening</h1>
+        <p class="lead">
+          Early screening helps families connect to support, access therapies sooner, and improve developmental outcomes.
+          Our prototype combines simple webcam screening and image-based analysis to provide a fast, non-invasive check.
+        </p>
+
+        <div class="hero-cta">
+          <a class="btn-primary" href="/signin">Get Started</a>
+          <a class="btn-ghost" href="/about">Learn more</a>
+        </div>
+
+      </div>
+
+      <div class="hero-right" aria-hidden="true">
+        <!-- placeholder illustration: local uploaded image path (will be converted to URL) -->
+        <img src="https://i.pinimg.com/1200x/02/28/32/0228321de973492900cdbdd78691b0ba.jpg" alt="illustration" class="hero-illustration">
+      </div>
+    </div>
+  </header>
+
+  <main class="content">
+    <section class="info-cards">
+      <article class="card">
+        <h3>What is Autism?</h3>
+        <p>Autism spectrum disorder (ASD) affects social communication and behavior. Early recognition can help access supports and therapies.</p>
+      </article>
+
+      <article class="card">
+        <h3>What is ADHD?</h3>
+        <p>Attention-deficit/hyperactivity disorder (ADHD) can affect attention and impulsivity. Early screening can guide behavioral support and learning plans.</p>
+      </article>
+
+      <article class="card">
+        <h3>How we help</h3>
+        <p>Prototype screening uses non-invasive visual cues and emotion/attention metrics to provide a risk score — always presented as a screening result, not a diagnosis.</p>
+      </article>
+    </section>
+
+    <section id="why-screening" class="why">
+      <h2>Why Early Screening Matters</h2>
+      <p>
+        Early identification of developmental differences gives children access to targeted interventions during critical growth windows.
+        Families can better understand needs, teachers can adapt learning environments, and clinicians can plan appropriate assessments.
+      </p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div>© <span id="year"></span> NeuroScreen — Screening prototype. Not a medical device.</div>
+      <div class="footer-links">
+        <a href="/privacy">Privacy</a> · <a href="/terms">Terms</a> · <a href="/contact">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // set year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
+

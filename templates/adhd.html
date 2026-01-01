@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ADHD Self-Assessment</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/adhd.css') }}">
+</head>
+<body>
+  <div class="page-wrap">
+    <header class="top-card">
+      <h1>ADHD Self-Assessment</h1>
+      <p class="subtitle">Answer honestly. (0 = Never → 4 = Very Often)</p>
+    </header>
+
+    <main class="card">
+      <div class="progress-wrap">
+        <div id="progressBar" class="progress-bar">
+          <div id="progressFill" class="progress-fill" style="width:0%"></div>
+        </div>
+        <div class="progress-text"><span id="qIndex">1</span>/15</div>
+      </div>
+
+      <section id="questionArea" class="question-area">
+        <!-- JS will populate this -->
+      </section>
+
+      <div class="nav-buttons">
+        <button id="prevBtn" class="btn ghost" disabled>Previous</button>
+        <button id="nextBtn" class="btn primary">Next</button>
+      </div>
+    </main>
+
+    <footer class="footer-note">
+      <small>Screening tool — not a clinical diagnosis. If concerned, consult a professional.</small>
+    </footer>
+  </div>
+
+  <script src="{{ url_for('static', filename='js/adhd.js') }}"></script>
+</body>
+</html>

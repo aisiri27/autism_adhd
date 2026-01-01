@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADHD Assessment Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/adhd.css') }}">
+    <style>
+        /* Additional inline styles for better UI */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .result-container {
+            background: #fff;
+            border-radius: 20px;
+            padding: 30px 40px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+        }
+
+        .result-title {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        .result-text {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        .sub-scores {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .sub-score {
+            background: #f0f4ff;
+            padding: 10px 15px;
+            border-radius: 10px;
+            font-weight: 600;
+            text-align: left;
+        }
+
+        .sub-score span {
+            float: right;
+            font-weight: bold;
+        }
+
+        .reasoning {
+            background: #e0f7fa;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+
+        .btn-group {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+        }
+
+        .btn-group a {
+            text-decoration: none;
+            padding: 12px 20px;
+            border-radius: 10px;
+            font-weight: bold;
+            transition: 0.3s;
+            color: #fff;
+        }
+
+        .btn-back {
+            background: #6c757d;
+        }
+
+        .btn-back:hover {
+            background: #5a6268;
+        }
+
+        .btn-retake {
+            background: #007bff;
+        }
+
+        .btn-retake:hover {
+            background: #0069d9;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="result-container">
+    <h1 class="result-title">🧠 ADHD Self-Assessment Result</h1>
+
+    <div class="result-text">
+        {{ result_text }}
+    </div>
+
+    <div class="sub-scores">
+        <div class="sub-score">Inattention: <span>{{ request.args.get('inattention', 'N/A') }}</span></div>
+        <div class="sub-score">Hyperactivity: <span>{{ request.args.get('hyperactivity', 'N/A') }}</span></div>
+        <div class="sub-score">Impulsivity: <span>{{ request.args.get('impulsivity', 'N/A') }}</span></div>
+        <div class="sub-score">Total Score: <span>{{ request.args.get('score', 'N/A') }}</span></div>
+    </div>
+
+    <div class="reasoning">
+        This assessment gives an indication of ADHD markers based on your answers. 
+        It is <strong>not a clinical diagnosis</strong>. For a proper evaluation, please consult a healthcare professional.
+    </div>
+
+    <div class="btn-group">
+        <a href="{{ url_for('adhd_test') }}" class="btn-retake">🔄 Retake Assessment</a>
+        <a href="{{ url_for('index') }}" class="btn-back">🏠 Back to Home</a>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,233 @@
+/* ---------------------------
+   RESET & BODY
+--------------------------- */
+body {
+    margin: 0;
+    font-family: "Inter", sans-serif;
+    background: linear-gradient(135deg, #c8f7d3, #b3e5fc); /* pastel mint → pastel blue */
+}
+
+/* ---------------------------
+   WRAPPER
+--------------------------- */
+.gradient-bg {
+    min-height: 100vh;
+    padding-top: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* ---------------------------
+   NAVIGATION
+--------------------------- */
+.top-nav {
+    background: white;
+    width: 750px;
+    padding: 18px 30px;
+    border-radius: 40px;
+    display: flex;
+    justify-content: space-evenly;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+    margin-bottom: 30px;
+}
+
+.nav-item, .nav-btn {
+    text-decoration: none;
+    color: #35524a; /* soft dark green */
+    font-weight: 600;
+    font-size: 19px;
+}
+
+.nav-item:hover, .nav-btn:hover {
+    color: #4aa6b5; /* pastel blue hover */
+}
+
+/* ---------------------------
+   MAIN CARD
+--------------------------- */
+.main-card {
+    background: white;
+    width: 750px;
+    padding: 45px 55px;
+    border-radius: 20px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+    text-align: center;
+}
+
+/* ---------------------------
+   TITLES & BOXES
+--------------------------- */
+.main-title {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 30px;
+    color: #3b695b; /* pastel deep green */
+}
+
+.about-box {
+    background: #e8fff0; /* soft pastel mint */
+    padding: 25px;
+    border-radius: 14px;
+    text-align: left;
+    margin-bottom: 35px;
+}
+
+.about-box h3 {
+    margin-top: 0;
+    color: #3a8673; /* gentle teal */
+}
+
+/* ---------------------------
+   UPLOAD SECTION
+--------------------------- */
+.upload-section {
+    margin-top: 20px;
+}
+
+.upload-box {
+    width: 85%;
+    max-width: 600px;
+    border: 2px dashed #86d1b3; /* pastel mint border */
+    height: 150px;
+    border-radius: 16px;
+    padding: 25px;
+    cursor: pointer;
+    transition: 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.upload-box:hover {
+    background: #f0fffa;
+    border-color: #5bb89b; /* deeper pastel mint */
+}
+
+.upload-inner {
+    text-align: center;
+}
+
+.upload-icon {
+    font-size: 40px;
+    margin-bottom: 10px;
+    color: #4ea88e; /* soft teal */
+}
+
+.note {
+    font-size: 14px;
+    color: #3b6e63;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+/* ---------------------------
+   PREDICT BUTTON
+--------------------------- */
+.predict-btn {
+    margin-top: 30px;
+    width: 100%;
+    padding: 18px;
+    background: #7ac9b0; /* pastel mint */
+    border: none;
+    border-radius: 12px;
+    color: white;
+    font-size: 20px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.predict-btn:hover {
+    background: #64af97; /* slightly deeper mint */
+}
+
+/* ---------------------------
+   FILE FEEDBACK
+--------------------------- */
+#file-feedback {
+    padding: 12px 20px;
+    background: #effff8; /* very light mint */
+    border-radius: 10px;
+    font-size: 16px;
+    color: #3b6e63;
+    width: 100%;
+    text-align: left;
+    display: none;
+    border-left: 4px solid #7ac9b0;
+    margin-top: 10px !important;
+    margin-bottom: 20px !important;
+}
+
+/* ---------------------------
+   RESULT CONTAINER
+--------------------------- */
+.result-container {
+    max-width: 600px;
+    margin: 50px auto;
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.result-container h2 {
+    font-size: 28px;
+    color: #2e4040;
+    margin-bottom: 25px;
+}
+
+.result-image-box {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.result-image {
+    width: 250px;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    margin-top: 10px;
+}
+
+/* ---------------------------
+   INFO BOXES
+--------------------------- */
+.prediction-info, .emotion-info {
+    background: #f0f9ff; /* light pastel blue */
+    border-left: 6px solid #5dc6e6; /* pastel blue side bar */
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    text-align: left;
+    color: #1e293b;
+}
+
+.prediction-info h3, .emotion-info h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: #5dc6e6;
+}
+
+/* ---------------------------
+   BACK BUTTON
+--------------------------- */
+.back-btn {
+    display: inline-block;
+    margin-top: 25px;
+    padding: 12px 20px;
+    background-color: #7ac9b0; /* pastel mint */
+    color: #fff;
+    border-radius: 10px;
+    text-decoration: none;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+.back-btn:hover {
+    background-color: #64af97;
+}

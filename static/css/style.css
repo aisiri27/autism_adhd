@@ -1,0 +1,222 @@
+/* ===== GLOBAL ===== */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: linear-gradient(135deg, #a8d8ff, #b7f8d8);
+    /* pastel blue → pastel mint */
+    color: #1f2d3d;
+    /* dark muted text for readability */
+    text-align: center;
+}
+
+/* ===== HEADERS ===== */
+h1 {
+    margin-top: 30px;
+    font-size: 42px;
+    font-weight: 700;
+    color: #1f2d3d;
+}
+
+h2 {
+    margin-top: 20px;
+    font-size: 30px;
+    font-weight: 600;
+    color: #1f2d3d;
+}
+
+header p {
+    margin-top: 8px;
+    font-size: 18px;
+    opacity: 0.9;
+    color: #2f3a47;
+}
+
+/* ===== NAV BUTTONS ===== */
+#top-buttons {
+    margin-top: 20px;
+}
+
+#top-buttons button {
+    font-size: 16px;
+    padding: 10px 18px;
+}
+
+/* ===== GENERAL BUTTON STYLING ===== */
+button {
+    padding: 12px 24px;
+    font-size: 18px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin: 10px;
+
+    background: #ffffff;
+    /* white base */
+    color: #3a84b8;
+    /* soft pastel blue text */
+
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #d8f4ff;
+    /* very light pastel blue */
+    transform: scale(1.05);
+}
+
+/* ===== PREDICTION BUTTONS SECTION ===== */
+#pred-buttons {
+    margin-top: 35px;
+    padding: 25px;
+    background: rgba(255, 255, 255, 0.35);
+    width: 80%;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 14px;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.15);
+}
+
+/* ===== CONSENT ===== */
+#consent {
+    margin-top: 30px;
+    padding: 20px;
+    width: 80%;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    background: rgba(255, 255, 255, 0.35);
+    border-radius: 14px;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.15);
+}
+
+#consent label {
+    font-size: 16px;
+    opacity: 0.95;
+    color: #1f2d3d;
+}
+
+/* ===== DISCLAIMER ===== */
+#disclaimer {
+    margin-top: 40px;
+    font-size: 14px;
+    opacity: 0.8;
+    padding-bottom: 30px;
+    color: #1f2d3d;
+}
+
+/* ===== WHY SCREENING SECTION ===== */
+#why-screening {
+    margin-top: 30px;
+    padding: 25px;
+    width: 80%;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    background: rgba(255, 255, 255, 0.40);
+    border-radius: 14px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.18);
+}
+
+#why-screening h3 {
+    font-size: 26px;
+    margin-bottom: 10px;
+    font-weight: 600;
+    color: #1f2d3d;
+}
+
+#why-screening p {
+    font-size: 16px;
+    opacity: 0.95;
+    color: #1f2d3d;
+    line-height: 1.5;
+}
+
+
+/* ===== CHATBOT ===== */
+#chatbot-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 9999;
+    font-family: Arial, sans-serif;
+}
+
+#chatbot-icon {
+    width: 55px;
+    height: 55px;
+    background: #2563eb;
+    color: white;
+    font-size: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+#chatbot-window {
+    display: none;
+    flex-direction: column;
+    width: 320px;
+    height: 420px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    position: absolute;
+    bottom: 70px;
+    right: 0;
+    overflow: hidden;
+}
+
+#chatbot-header {
+    background: #2563eb;
+    color: white;
+    padding: 12px;
+    font-weight: bold;
+    text-align: center;
+}
+
+#chatbot-messages {
+    flex: 1;
+    padding: 10px;
+    overflow-y: auto;
+    font-size: 14px;
+}
+
+.message {
+    margin-bottom: 10px;
+}
+
+.user {
+    text-align: right;
+    color: #1d4ed8;
+}
+
+.bot {
+    text-align: left;
+    color: #111827;
+}
+
+#chatbot-input-area {
+    display: flex;
+    border-top: 1px solid #e5e7eb;
+}
+
+#chatbot-input {
+    flex: 1;
+    padding: 8px;
+    border: none;
+    outline: none;
+}
+
+#chatbot-send {
+    background: #2563eb;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+}

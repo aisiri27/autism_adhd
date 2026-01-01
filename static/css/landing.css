@@ -1,0 +1,254 @@
+/* landing.css — clean clinical landing page (Option A) */
+
+/* Reset-ish */
+* { box-sizing: border-box; }
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: "Inter", "Segoe UI", Arial, sans-serif;
+    color: #1f2d3d;
+}
+
+/* GLOBAL BACKGROUND */
+body {
+    background: #ffe7d3; /* peach tone */
+}
+
+/* NAV */
+.nav {
+    background: #ffffff;
+    border-bottom: 1px solid rgba(16,24,40,0.04);
+}
+.nav-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* brand left + links right */
+}
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.logo-circle {
+    width: 44px;
+    height: 44px;
+    background: linear-gradient(135deg,#7b61ff,#4ea8ff);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 20px;
+}
+.brand-title {
+    display: block;
+    font-weight: 700;
+    font-size: 16px;
+    color: #111827;
+}
+.brand-sub {
+    display: block;
+    font-size: 12px;
+    color: #6b7280;
+}
+
+/* NAV LINKS */
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 32px;   /* increased spacing */
+}
+.nav-links a {
+    color: #374151;
+    text-decoration: none;
+    font-size: 15px;
+}
+
+/* Sign In button (Black, white text) */
+.btn-outline {
+    padding: 8px 16px;
+    border-radius: 8px;
+    background: #000000;
+    color: #ffffff !important;   /* white text */
+    border: none;
+    font-weight: 600;
+    box-shadow: 0 3px 8px rgba(16,24,40,0.04);
+}
+
+/* HERO */
+.hero {
+    padding: 90px 18px; 
+    background: #ffe7d3;
+}
+.hero-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    gap: 36px;
+    align-items: center;
+    justify-content: space-between;
+}
+.hero-left {
+    flex: 1 1 540px;
+    padding: 12px;
+}
+.hero-right {
+    flex: 0 0 420px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Circular hero image */
+.hero-illustration {
+    width: 350px;
+    height: 350px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 10px 30px rgba(16,24,40,0.08);
+}
+
+/* hero text */
+.hero-left h1 {
+    font-size: 36px;
+    margin: 0 0 14px 0;
+    color: #0f172a;
+    line-height: 1.05;
+}
+.hero-left .accent {
+    background: linear-gradient(90deg,#5a1fe3,#1e90ff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 800;
+}
+.lead {
+    font-size: 16px;
+    color: #374151;
+    margin-bottom: 18px;
+    max-width: 560px;
+}
+
+/* CTA buttons */
+.hero-cta {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 18px;
+}
+.btn-primary {
+    background: linear-gradient(90deg,#5a1fe3,#4ea8ff);
+    color: #fff;
+    padding: 12px 18px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+/* Learn more = white button */
+.btn-ghost {
+    background: #ffffff;
+    border: 1px solid #d1d5db;
+    padding: 10px 16px;
+    border-radius: 10px;
+    color: #000000;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+/* CONTENT CARDS */
+.content {
+    max-width: 1200px;
+    margin: 28px auto;
+    padding: 0 18px 60px;
+    background: #ffe7d3;
+}
+.info-cards {
+    display: flex;
+    gap: 18px;
+    justify-content: space-between;
+    margin-bottom: 26px;
+    flex-wrap: wrap;
+}
+.card {
+    flex: 1 1 30%;
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 10px 30px rgba(16,24,40,0.06);
+    color: #111827;
+    min-width: 220px;
+}
+.card h3 {
+    margin: 0 0 8px 0;
+    font-size: 18px;
+}
+.card p {
+    margin: 0;
+    color: #374151;
+    line-height: 1.5;
+}
+
+/* WHY SCREENING – white container */
+.why {
+    background: #ffffff;
+    padding: 28px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(16,24,40,0.06);
+    color: #0f172a;
+    margin: 8px auto;
+    max-width: 900px;
+}
+
+/* FOOTER */
+.site-footer {
+    background: #f8fafc;
+    border-top: 1px solid rgba(16,24,40,0.04);
+    padding: 18px 0;
+    margin-top: 40px;
+}
+.footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 18px;
+    color: #6b7280;
+    font-size: 14px;
+}
+.footer-links a {
+    color: #6b7280;
+    text-decoration: none;
+    margin-left: 8px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 920px) {
+    .hero-inner {
+        flex-direction: column-reverse;
+        gap: 20px;
+        align-items: center;
+    }
+    .hero-right {
+        width: 100%;
+    }
+    .info-cards {
+        flex-direction: column;
+    }
+    .card {
+        width: 100%;
+    }
+    .nav-inner {
+        flex-direction: column;
+        gap: 12px;
+        align-items: flex-start;
+    }
+    .nav-links {
+        gap: 12px;
+    }
+}

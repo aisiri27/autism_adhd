@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Real-Time Autism Screening</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <style>
+    /* Pastel lilac theme (Option B) */
+    :root{
+      --bg: #f3edf9;
+      --card: #ede7f6;
+      --accent: #7e57c2;
+      --muted: #6b5ea6;
+      --white: #ffffff;
+      --glass: rgba(255,255,255,0.7);
+    }
+
+    body{
+      margin:0;
+      font-family: Inter, Arial, sans-serif;
+      background: linear-gradient(180deg, #f9f7ff 0%, #f3edf9 100%);
+      display:flex;
+      justify-content:center;
+      padding:28px 12px;
+    }
+
+    .container{
+      width: 880px;
+      max-width: calc(100% - 24px);
+      text-align:center;
+    }
+
+    header{ margin-bottom:16px; }
+    header h1{
+      margin:0;
+      color:var(--muted);
+      font-weight:700;
+      font-size:22px;
+    }
+    header p{
+      margin:6px 0 0;
+      color:#5b4fa3;
+      font-size:14px;
+    }
+
+    /* Webcam card */
+    .card {
+      background: var(--card);
+      border-radius:14px;
+      padding:18px;
+      box-shadow: 0 8px 20px rgba(124,88,163,0.08);
+      margin-bottom:18px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+    }
+
+    #webcam-wrap{
+      position:relative;
+      width:680px;
+      max-width:100%;
+      margin: 6px auto 12px;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+    }
+
+    video, canvas{
+      width:640px;
+      max-width:100%;
+      height:480px;
+      border-radius:10px;
+      border: 3px solid rgba(126,87,194,0.15);
+      background:#000;
+      object-fit:cover;
+    }
+    canvas{ position:absolute; left:0; top:0; pointer-events:none; }
+
+    .controls{
+      margin-top:12px;
+      display:flex;
+      gap:12px;
+      justify-content:center;
+      align-items:center;
+    }
+
+    .btn {
+      background:var(--accent);
+      color:var(--white);
+      border:none;
+      padding:10px 16px;
+      border-radius:8px;
+      cursor:pointer;
+      font-weight:600;
+      box-shadow: 0 6px 14px rgba(126,87,194,0.12);
+      transition:transform .12s ease;
+    }
+    .btn:active{ transform:translateY(1px); }
+    .btn.secondary{
+      background:#fff;
+      color:var(--muted);
+      border:1px solid rgba(124,88,163,0.12);
+      box-shadow:none;
+    }
+
+    /* Results area (hidden until after run) */
+    #results {
+      margin-top:16px;
+      text-align:left;
+      background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(250,248,255,0.9));
+      border-radius:12px;
+      padding:16px;
+      display:none;
+      border:1px solid rgba(126,87,194,0.06);
+    }
+
+    .metrics-grid{
+      display:grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap:12px;
+      margin-top:10px;
+    }
+
+    .metric{
+      background:var(--white);
+      padding:10px;
+      border-radius:8px;
+      box-shadow: 0 6px 12px rgba(125,92,172,0.06);
+    }
+    .metric h4{ margin:0 0 6px 0; color:var(--muted); font-size:13px; }
+    .metric p{ margin:0; font-weight:700; color:#222; font-size:20px; }
+
+    .desc{
+      margin-top:12px;
+      color:#4b3f7a;
+      font-size:14px;
+    }
+
+    /* popup style */
+    .popup {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: rgba(50,30,80,0.92);
+      color: white;
+      padding: 10px 18px;
+      border-radius: 10px;
+      z-index: 2000;
+      font-weight:600;
+      box-shadow: 0 8px 30px rgba(99,72,164,0.18);
+    }
+
+    @media (max-width:720px){
+      video, canvas{ height:360px; }
+      .metrics-grid{ grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Real-Time Autism Screening — Prototype</h1>
+      <p>Quick heuristics: eye contact, social behaviour index (head rocking + smile), and blink patterns. 15s scan — not diagnostic.</p>
+    </header>
+
+    <div class="card" id="cameraCard">
+      <div id="webcam-wrap">
+        <video id="webcam" autoplay muted playsinline></video>
+        <canvas id="overlay"></canvas>
+      </div>
+
+      <div class="controls">
+        <button id="startBtn" class="btn">Start Screening</button>
+        <button id="stopBtn" class="btn secondary" disabled>Stop</button>
+        <button class="btn secondary" onclick="window.location.href='/index'">Home</button>
+      </div>
+    </div>
+
+    <!-- Results: appears AFTER screening stop -->
+    <div id="results">
+      <h3>Screening Results</h3>
+      <div class="metrics-grid">
+        <div class="metric">
+          <h4>Eye Contact Stability</h4>
+          <p id="eyeContactScore">--%</p>
+        </div>
+        <div class="metric">
+          <h4>Social Behaviour Index (SBI)</h4>
+          <p id="sbiScore">--</p>
+        </div>
+        <div class="metric">
+          <h4>Blink Variability</h4>
+          <p id="blinkVar">--</p>
+        </div>
+        <div class="metric">
+          <h4>Autism Likelihood</h4>
+          <p id="autismLikelihood">--%</p>
+        </div>
+      </div>
+
+      <div class="desc">
+        <strong>Interpretation (prototype):</strong> Higher autism-likelihood values indicate behavioural markers that warrant a professional follow-up. This is not a diagnosis.
+      </div>
+    </div>
+
+  </div>
+
+  <!-- MediaPipe scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh/face_mesh.js"></script>
+
+  <!-- Custom JS -->
+  <script src="{{ url_for('static', filename='js/realtime_autism.js') }}"></script>
+</body>
+</html>
